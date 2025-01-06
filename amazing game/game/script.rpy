@@ -11,14 +11,16 @@ define a = Character("Artemis")
 define s = Character("Stephen")
 define adv = Character("Advisor")
 define y = Character("You")
+define mc = Character("[name]")
+
+# class user:
+# def __init__(main, business, math, art, biology, compsci, english, ryan, thomas, cole, nathan, artemis, stephen):
+#     main.business = 0
 
 # The game starts here.
-
 label start:
-
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
+    $ name = renpy.input("What's your name?")
+    $ name = name.strip()
 
     scene bg room
 
@@ -39,13 +41,13 @@ label start:
 
     scene advisor room
 
-    adv "Welcome to Marigold University, ____."
+    adv "Welcome to Marigold University, [name]."
     adv "It says here that your major is undecided. Well, we have a policy here at Marigold University that requires undecided freshmen to decide on a major by the end of the year."
     adv "In order to help you, I have enrolled you in a variety of classes, including Business, Computer Science, English, Art, Math, and Biology."
     adv "Be sure to keep up your grades, especially in the one you want to major in."
-    adv "Good luck, _____."
+    adv "Good luck, [name]."
 
-    scene black screen
+    scene black
 
     "Clutching your new schedule in hand, you walk to your first class, Biology 101."
 
@@ -54,7 +56,7 @@ label start:
     "You walk into a packed lecture hall."
     "You find an empty seat towards the back of the hall."
     "Suddenly, a hand grasps the back of the seat next to you."
-    "You look up to see [dudes desc]."
+    "You look up to see."
 
     menu:
     
@@ -62,28 +64,30 @@ label start:
 
         "I don’t mind.":
 
-            call dontmind
+            jump dontmind
 
         "Stay silent.":
 
-            call silent
+            jump silent
 
     label dontmind:
 
     s "Thanks!"
     s "I’m Stephen. What’s your name?"
 
-    y "I’m _____, it’s nice to meet you."
+    y "I’m [name], it’s nice to meet you."
 
-    return
+    jump bio1
 
     label silent:
     s "Sorry, but I think I’ll have to sit here. There aren’t any other open seats."
     s "I’m Stephen. What’s your name?"
 
-    y "I’m _____."
+    y "I’m [name]."
     
-    return
+    jump bio1
+
+    label bio1:
 
     s "So… are you also a biology major?"
 
