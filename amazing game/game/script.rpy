@@ -13,9 +13,20 @@ define adv = Character("Advisor")
 define y = Character("You")
 define mc = Character("[name]")
 
-# class user:
-# def __init__(main, business, math, art, biology, compsci, english, ryan, thomas, cole, nathan, artemis, stephen):
-#     main.business = 0
+init:
+    $ ryan_relationship = 0
+    $ thomas_relationship = 0
+    $ cole_relationship = 0
+    $ nathan_relationship = 0
+    $ artemis_relationship = 0
+    $ stephen_relationship = 0
+
+    $ business_points = 0
+    $ english_points = 0
+    $ math_points = 0
+    $ compsci_points = 0
+    $ art_points = 0
+    $ biology_points = 0
 
 # The game starts here.
 label start:
@@ -64,10 +75,12 @@ label start:
 
         "I don’t mind.":
 
+            $ stephen_relationship += 10
             jump dontmind
 
         "Stay silent.":
 
+            $ stephen_relationship -= 10
             jump silent
 
     label dontmind:
@@ -96,7 +109,83 @@ label start:
     s "Oh cool! Well, I think that biology is really interesting."
     s "I’m on the pre-med track. I really hope to be a doctor one day."
     s "I love working with patients. I like hearing about their stories and-"
-    s "Oh, sorry… I’m rambling again…"
+
+    menu:
+
+        s "Oh, sorry… I’m rambling again…"
+
+        "Actually, I’d love to hear more.":
+
+            $ stephen_relationship += 10
+            jump hearmore
+    
+        "No worries, but I think class is about to start.":
+
+            $ stephen_relationship -= 5
+            jump classstart
+
+    label hearmore:
+        
+    s "Wait really? I appreciate it."
+    s "Healthcare has always been a big part of my life. That’s why I’m super passionate about it."
+    s "Oh, it looks like class is about to start."
+        
+    "Stephen proceeds to take out his laptop and turns his attention to the front of the classroom."
+
+    jump bio2
+
+    label classstart:
+    
+    s "Oh, right!"
+        
+    "Stephen proceeds to take out his laptop and turns his attention to the front of the classroom."
+
+    jump bio2
+
+    label bio2:
+    "The professor introduces himself and proceeds to talk about class expectations. He then gives an opportunity for introductions amongst students."
+    "Stephen turns to look at you again."
+    
+    s "So you’re undecided…"
+
+    menu:
+
+        s "Not a big decision maker, huh?" #joke
+    
+        "Surprisingly, I didn’t get to make a decision on a college either…":
+
+            $ stephen_relationship += 10
+            jump collegedec
+    
+        "Excuse me?":
+
+            $ stephen_relationship -= 10
+            jump excuseme
+
+    label collegedec:
+    
+    s "You also got rejected from other schools?" #Stephen asks with an empathetic look.
+
+    "You nod."
+
+    s "Don’t worry, I’m right there with you."
+
+    jump bio3
+
+    label excuseme:
+
+    s "Sorry! I was just joking around."
+    
+    "The mood turns awkward."
+
+    jump bio3
+
+    label bio3:
+
+    "The professor announces the end of class and thanks everyone for attending."
+
+    s "It was nice meeting you, [name]."
+    s "I’ll catch you around!"
 
     # This ends the game.
 
