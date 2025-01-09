@@ -187,6 +187,121 @@ label start:
     s "It was nice meeting you, [name]."
     s "I’ll catch you around!"
 
+    scene black
+
+    scene business
+
+    "You walk into a relatively empty classroom."
+    "The students there before you filled up the back row, and you have no choice but to sit near the front."
+    "As you settle down, you jolt in surprise when feeling a light tap on your shoulder."
+    "You look back to see dudes desc"
+
+    menu:
+        
+        r "Hey, this is Business Administration 120, right?"
+    
+        "Yeah, this is section 2.":
+
+            $ ryan_relationship += 5
+            jump section2
+
+        "Stay silent.":
+
+            $ ryan_relationship -= 5
+            jump silence
+
+    label section2:
+    
+    r "Awesome, I was worried this was the wrong classroom!"
+
+    "Ryan sits next to you."
+
+    jump bus1
+
+    label silence:
+
+    r "Oh, uhh shoot. Is this the wrong class?"
+
+    "Ryan checks his schedule again and discovers that this is the correct classroom. He brushes off the player’s silent treatment and sits next to them."
+
+    jump bus1
+
+
+    label bus1:
+
+    r "Let’s do icebreakers, where are you from and what’s your major?"
+    
+    "He points at himself and smiles."
+
+    r "I’m Ryan from the Bay Area, and I’m going into Real Estate!"
+
+    y "I’m [name], and I’m from (hometown). I’m actually undecided."
+
+    menu:
+
+        r "Oh cool! So you’re trying out all the classes! Personally, I think business is the way to go!"
+
+        "Maybe you can convince me to commit to business.":
+
+            $ ryan_relationship += 10
+            jump convince
+
+        "I’m just forced to take all the classes, I don’t think I’ll actually choose business.":
+
+            $ ryan_relationship -= 10
+            jump forced
+
+
+    label convince:
+
+    r "I guess that’ll be my goal for this semester!"
+    "Ryan chuckles, looking happy for the rest of lecture."
+
+    jump bus2
+
+    label forced:
+    
+    r "Oh, well I guess you do have a bunch of other choices…"
+    "Ryan’s mood is gloomy for the rest of lecture."
+
+    jump bus2
+
+
+    label bus2:
+
+    "The lecture today was boring, mostly going over the syllabus and professor introductions."
+    "At the end of class, as you pack up your things, Ryan approaches you."
+
+    menu:
+    
+        r "You wanna exchange numbers? You seem pretty smart and I’m trying to assemble the best study group at Marigold University!" 
+
+        "Sure, it’d be great to study for midterms together.":
+
+            $ ryan_relationship += 15
+            jump exchangenum
+
+        "No thank you, I prefer to study alone.":
+
+            $ ryan_relationship -= 10
+            jump dontexchangenum
+
+    label exchangenum:
+
+    r "Thanks! I’ll text you."
+    jump bus3
+
+
+    label dontexchangenum:
+
+    r "Oh, okay then. See you next class."
+    jump bus3
+
+
+    label bus3:
+
+    scene black
+
     # This ends the game.
 
     return
